@@ -1,2 +1,9 @@
 server:
   port: 8082
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: "jdbc:mysql://google/myappsql?cloudSqlInstance=rugged-future-282612:us-central1:myappsql&socketFactory=com.google.sql.mysql.SocketFactory&user=root&password=root"
+    password: "root"
+    username: "root"

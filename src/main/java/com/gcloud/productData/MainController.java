@@ -1,15 +1,18 @@
 package com.gcloud.productData;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 public class MainController {
 
     @RestController
     public class HelloWorld {
+
+        @Autowired
+        ProductsDAO productsDAO;
 
         @GetMapping("/")
         private String defaultCall(){
@@ -19,6 +22,12 @@ public class MainController {
         @GetMapping("/HelloWorld")
         private String sample(){
             return "Hello World from MS2";
+        }
+
+        @RequestMapping(value = "/product/{Id}", method = RequestMethod.GET)
+        private String fetchProductName(@PathVariable("Id") String productId){
+            return productsDAO.getProductNameById(productId);
+
         }
     }
 
